@@ -17,7 +17,7 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.freeze
   validates_uniqueness_of :email, case_sensitive: false
   validates_uniqueness_of :mobile, case_sensitive: false
-  validates :email, format: { with: VALID_EMAIL_REGEX, message: 'Incorrect email format, e.g. test@lipalater.com' }
+  validates :email, format: { with: VALID_EMAIL_REGEX, message: 'Incorrect email format, e.g. test@nothing.com' }
 
   # method to check if the user has a particular role:
   def role?(role)

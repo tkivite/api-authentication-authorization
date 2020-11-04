@@ -15,6 +15,6 @@ RSpec.describe Collection, type: :model do
     it { should validate_presence_of(:status) }
   end
   describe 'Enum Constraints' do
-    it { should define_enum_for(:status).with_values(%i[pending collected_by_lipalater collected_by_agent collected_by_customer]) }
+    it { should define_enum_for(:status).with_values(%i[pending collected_by_nothing collected_by_agent collected_by_customer]) }
   end
 end

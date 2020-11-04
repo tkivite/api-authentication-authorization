@@ -34,15 +34,15 @@ class Api::V1::DisbursedsController < Api::DisbursedController
           # could not find store
           subject = "Release to unknown store #{sale.store}"
           msg = "We have received a new sale on The Hub, but the attached store key: #{sale.store} does not exist on The Hub."
-          tos = ['wnzisa@lipalater.com', 'ekaguima@lipalater.com']
-          ccs = ['mmaina@odysseyafricapital.com', 'disbursed@lipalater.com', 'disbursed@lipalater.com.test-google-a.com',
-                 'hzare@lipalater.com', 'tech@lipalater.com', 'dorare@lipalater.com']
+          tos = ['wnzisa@nothing.com', 'ekaguima@nothing.com']
+          ccs = ['mmaina@odysseyafricapital.com', 'disbursed@nothing.com', 'disbursed@nothing.com.test-google-a.com',
+                 'hzare@nothing.com', 'tech@nothing.com', 'dorare@nothing.com']
           email_payload = {
             'subject' => subject,
             'message' => msg,
             'to' => tos.join(','),
             'cc' => ccs.join(','),
-            'from' => 'theHub@lipalater.com',
+            'from' => 'theHub@nothing.com',
             'purpose' => 'general'
           }
           NotificationMailerWorker.perform_async(email_payload)
@@ -67,11 +67,11 @@ class Api::V1::DisbursedsController < Api::DisbursedController
 
   def customer_release_email(sales)
     sale = sales[0]
-    from = 'contracts@lipalater.com'
+    from = 'contracts@nothing.com'
     tos = [sale.customer_email]
-    bccs = ['tkivite@lipalater.com']
+    bccs = ['tkivite@nothing.com']
 
-    # bccs = ['disbursed@lipalater.com', 'disbursed@lipalater.com.test-google-a.com', 'tkivite@lipalater.com', 'hzare@lipalater.com', 'dorare@lipalater.com', 'customers@lipalater.com']
+    # bccs = ['disbursed@nothing.com', 'disbursed@nothing.com.test-google-a.com', 'tkivite@nothing.com', 'hzare@nothing.com', 'dorare@nothing.com', 'customers@nothing.com']
     subject = 'Your Lipa Later Facility Details'
     email_payload = {}
     email_payload['to'] = tos.join(',')
@@ -213,7 +213,7 @@ class Api::V1::DisbursedsController < Api::DisbursedController
       # pick_up_option = sale.pick_up_option
       # pick_up_type = sale.pick_up_type
 
-      account_manager_email = 'wnzisa@lipalater.com'
+      account_manager_email = 'wnzisa@nothing.com'
       partner = Partner.find_by(id: current_store.partner_id)
       account_manager = User.find_by(id: partner.account_manager_id)
 
@@ -223,7 +223,7 @@ class Api::V1::DisbursedsController < Api::DisbursedController
 
       subject = "ITEMS FOR RELEASE - #{current_store.store_key.upcase} (#{Time.now.strftime('%d/%m/%Y')})"
       # tos = [current_store.disburse_email]
-      tos = ['tkivite@lipalater.com']
+      tos = ['tkivite@nothing.com']
       # ccs = ['mmaina@odysseyafricapital.com']
       ccs = ['tkivite@gmail.com']
       # unless current_store.disburse_email_cc1.nil?
@@ -232,8 +232,8 @@ class Api::V1::DisbursedsController < Api::DisbursedController
       # ccs.push('tkivite@gmail.com')
       bccs = []
       # ccs.push(')
-      # bccs = ['disbursed@lipalater.com', 'disbursed@lipalater.com.test-google-a.com', 'hzare@lipalater.com',
-      #         'customers@lipalater.com', 'romwodo@lipalater.com']
+      # bccs = ['disbursed@nothing.com', 'disbursed@nothing.com.test-google-a.com', 'hzare@nothing.com',
+      #         'customers@nothing.com', 'romwodo@nothing.com']
       bccs.push(account_manager_email)
 
       store_msg = 'Kindly note that the following items will be collected from your store'
@@ -249,7 +249,7 @@ class Api::V1::DisbursedsController < Api::DisbursedController
         'subject' => subject,
         'message' => store_msg,
         'to' => tos.join(','),
-        'from' => 'theHub@lipalater.com',
+        'from' => 'theHub@nothing.com',
         'cc' => ccs.join(','),
         'bcc' => bccs.join(','),
         'purpose' => 'general'
@@ -305,14 +305,14 @@ class Api::V1::DisbursedsController < Api::DisbursedController
 
         partner = Partner.find_by(id: sale_store.partner_id)
         account_manager = User.find_by(id: partner.account_manager_id)
-        account_manager_email = 'tkivite@lipalater.com'
+        account_manager_email = 'tkivite@nothing.com'
         unless account_manager.nil? || account_manager.email.nil?
           account_manager_email = account_manager.email
         end
 
-        to = ['tkivite@lipalater.com', 'disbursed@lipalater.com', 'disbursed@lipalater.com.test-google-a.com', 'customers@lipalater.com', account_manager_email]
+        to = ['tkivite@nothing.com', 'disbursed@nothing.com', 'disbursed@nothing.com.test-google-a.com', 'customers@nothing.com', account_manager_email]
 
-        from = 'accounts@lipalater.com'
+        from = 'accounts@nothing.com'
         begin
           puts "sending email to: #{to}   from: #{from}  msg: #{store_msg}"
           email_payload = {

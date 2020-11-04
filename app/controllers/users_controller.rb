@@ -68,7 +68,7 @@ class UsersController < ApplicationController
     msg += "\n\n\t If this email was sent by mistake kindly ignore"
     msg += "\n\n\t Should you have challenges or need our assistance feel free to call us on: 0709684000"
     to = user.email
-    from = 'thehub@lipalater.com'
+    from = 'thehub@nothing.com'
     {
       'subject' => 'The hub - Welcome to the hub',
       'message' => msg,

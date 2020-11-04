@@ -75,7 +75,7 @@ class PasswordsController < ActionController::API
     msg += "\n\n\t If this email was sent by mistake kindly ignore"
     msg += "\n\n\t Should you have challenges or need our assistance feel free to call us on: 0709684000"
     to = user.email
-    from = 'thehub@lipalater.com'
+    from = 'thehub@nothing.com'
 
     puts "sending email to: #{to}   from: #{from}  msg: #{msg}"
     {
@@ -98,7 +98,7 @@ class PasswordsController < ActionController::API
     msg += "\n\n\t If this email was sent by mistake kindly ignore"
     msg += "\n\n\t Should you have challenges or need our assistance feel free to call us on: 0709684000"
     to = user.email
-    from = 'thehub@lipalater.com'
+    from = 'thehub@nothing.com'
     {
       'subject' => 'The hub - Forgot password?',
       'message' => msg,

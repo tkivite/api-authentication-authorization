@@ -10,9 +10,9 @@ module CanonicalRequestHelper
     # @param request_params String Data to pass to backend can be blank for get requests
     unless request_method.blank? || request_url.blank?
       # Initialize
-      api_key = ENV['LIPALATER_CORE_API_KEY']
-      api_secret = ENV['LIPALATER_CORE_API_SECRET']
-      lipalater_core_base_url = ENV['LIPALATER_CORE_BASE_URL']
+      api_key = ENV['NOTHING_CORE_API_KEY']
+      api_secret = ENV['NOTHING_CORE_API_SECRET']
+      nothing_core_base_url = ENV['NOTHING_CORE_BASE_URL']
       timestamp = Time.now.iso8601
       # Rails Environment Params
       p '/***********************************************************************************\\'
@@ -43,13 +43,13 @@ module CanonicalRequestHelper
       Rails.logger.info "API Secret: #{api_secret}"
       Rails.logger.info "Computed Signature: #{base64_signature}"
 
-      lipalater_core_base_url = (lipalater_core_base_url[-1] == "/")? lipalater_core_base_url : lipalater_core_base_url + "/"
+      nothing_core_base_url = (nothing_core_base_url[-1] == "/")? nothing_core_base_url : nothing_core_base_url + "/"
       begin
         if request_method.downcase.include?('get')
           begin
-            RestClient.get "#{lipalater_core_base_url}#{request_url}",
+            RestClient.get "#{nothing_core_base_url}#{request_url}",
                            { content_type: :json, accept: :json, 'X-Authorization-Signature': base64_signature.to_s,
-                             'X-Authorization-Timestamp': timestamp.to_s, 'Authorization': 'LIPALATER-HMAC-SHA256', 'X-Authorization-ApiKey': api_key.to_s }
+                             'X-Authorization-Timestamp': timestamp.to_s, 'Authorization': 'NOTHING-HMAC-SHA256', 'X-Authorization-ApiKey': api_key.to_s }
           rescue RestClient::ExceptionWithResponse => e
             p '/***********************************************************************************\\'
             p ' ------------------------------- HTTP GET CALL ERROR ------------------------------- '
@@ -62,9 +62,9 @@ module CanonicalRequestHelper
 
         elsif  request_method.downcase.include?('post')
           begin
-            response = RestClient::Request.execute(method: :post, url: "#{lipalater_core_base_url}#{request_url}", payload: request_params,
+            response = RestClient::Request.execute(method: :post, url: "#{nothing_core_base_url}#{request_url}", payload: request_params,
                                                    headers: { content_type: :json, accept: :json, 'X-Authorization-Signature': base64_signature.to_s,
-                                                              'X-Authorization-Timestamp': timestamp.to_s, 'Authorization': 'LIPALATER-HMAC-SHA256', 'X-Authorization-ApiKey': api_key.to_s })
+                                                              'X-Authorization-Timestamp': timestamp.to_s, 'Authorization': 'NOTHING-HMAC-SHA256', 'X-Authorization-ApiKey': api_key.to_s })
 
             # puts "----------------------------------------"
             # # puts "The response when posting request to core is: #{response.body}"
@@ -86,9 +86,9 @@ module CanonicalRequestHelper
 
         elsif  request_method.downcase.include?('put')
           begin
-            RestClient::Request.execute(method: :put, url: "#{lipalater_core_base_url}#{request_url}", payload: request_params,
+            RestClient::Request.execute(method: :put, url: "#{nothing_core_base_url}#{request_url}", payload: request_params,
                                         headers: { content_type: :json, accept: :json, 'X-Authorization-Signature': base64_signature.to_s,
-                                                   'X-Authorization-Timestamp': timestamp.to_s, 'Authorization': 'LIPALATER-HMAC-SHA256', 'X-Authorization-ApiKey': api_key.to_s })
+                                                   'X-Authorization-Timestamp': timestamp.to_s, 'Authorization': 'NOTHING-HMAC-SHA256', 'X-Authorization-ApiKey': api_key.to_s })
           rescue RestClient::ExceptionWithResponse => e
             p '/***********************************************************************************\\'
             p ' -------------------------------- HTTP PUT CALL ERROR ------------------------------- '
@@ -101,9 +101,9 @@ module CanonicalRequestHelper
 
         elsif  request_method.downcase.include?('delete')
           begin
-            RestClient::Request.execute(method: :delete, url: "#{lipalater_core_base_url}#{request_url}", payload: request_params,
+            RestClient::Request.execute(method: :delete, url: "#{nothing_core_base_url}#{request_url}", payload: request_params,
                                         headers: { content_type: :json, accept: :json, 'X-Authorization-Signature': base64_signature.to_s,
-                                                   'X-Authorization-Timestamp': timestamp.to_s, 'Authorization': 'LIPALATER-HMAC-SHA256', 'X-Authorization-ApiKey': api_key.to_s })
+                                                   'X-Authorization-Timestamp': timestamp.to_s, 'Authorization': 'NOTHING-HMAC-SHA256', 'X-Authorization-ApiKey': api_key.to_s })
           rescue RestClient::ExceptionWithResponse => e
             p '/***********************************************************************************\\'
             p ' ------------------------------- HTTP DELETE CALL ERROR ------------------------------ '

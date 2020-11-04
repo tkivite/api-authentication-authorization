@@ -14,13 +14,13 @@ RSpec.describe ItemsController, type: :controller do
     
     request.headers['Authorization'] = @user.authorization_token
 
-    lipalater_core_base_url = ENV['LIPALATER_CORE_BASE_URL']
-    lipalater_core_base_url = lipalater_core_base_url[-1] == '/' ? lipalater_core_base_url : lipalater_core_base_url + '/'
+    nothing_core_base_url = ENV['NOTHING_CORE_BASE_URL']
+    nothing_core_base_url = nothing_core_base_url[-1] == '/' ? nothing_core_base_url : nothing_core_base_url + '/'
     response_data_fetch = { status: true, description: 'success', payload: {"id":"custid"} }.to_json
     response_data_save_facility = { status: true, description: 'Success' }.to_json
-    stub_request(:post, "#{lipalater_core_base_url}fetch_client")
+    stub_request(:post, "#{nothing_core_base_url}fetch_client")
       .to_return({ status: 'Ok', body: response_data_fetch.to_s, headers: {} })
-    stub_request(:post, "#{lipalater_core_base_url}save_client_facilities")
+    stub_request(:post, "#{nothing_core_base_url}save_client_facilities")
       .to_return({ status: 'Ok', body: response_data_save_facility.to_s, headers: {} })
   end
 

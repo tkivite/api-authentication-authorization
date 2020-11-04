@@ -13,7 +13,7 @@
 #   othernames: 'user',
 #   gender: 'Male',
 #   mobile: '+254725475051',
-#   email: 'devops@lipalater.com',
+#   email: 'devops@nothing.com',
 #   password: 'Lip@l@t3r!2020',
 #   created_by: 0,
 #   last_login_time: '2020-08-25 15:07:49',

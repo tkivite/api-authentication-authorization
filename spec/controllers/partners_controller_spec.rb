@@ -18,15 +18,15 @@ RSpec.describe PartnersController, type: :controller do
     @partner = FactoryBot.create(:partner)
     @partner.creator_id = @user.id
     @partner.account_manager_id = @user.id
-    lipalater_core_base_url = ENV['LIPALATER_CORE_BASE_URL']    
-    lipalater_core_base_url = (lipalater_core_base_url[-1] == "/")? lipalater_core_base_url : lipalater_core_base_url + "/"
+    nothing_core_base_url = ENV['NOTHING_CORE_BASE_URL']    
+    nothing_core_base_url = (nothing_core_base_url[-1] == "/")? nothing_core_base_url : nothing_core_base_url + "/"
 
     response_data_create = { status: true, description: 'Partner created successfully', record_id: '627ssgd637dhdhdh1io222' }.to_json
     response_data_update = { status: true, description: 'Partner created successfully', record_id: '627ssgd637dhdhdh1io222' }.to_json
 
-    stub_request(:post, "#{lipalater_core_base_url}create_partner").
+    stub_request(:post, "#{nothing_core_base_url}create_partner").
       to_return({status: "Ok",body:response_data_create.to_s, headers:{}})
-      stub_request(:put,"#{lipalater_core_base_url}update_partner").
+      stub_request(:put,"#{nothing_core_base_url}update_partner").
       to_return({status: "Ok",body:response_data_update.to_s, headers:{}})
     @valid_params = {
         name: "Test", 

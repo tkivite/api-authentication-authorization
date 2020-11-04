@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-partner = Partner.find_by(name: 'Lipalater-HQ')
+partner = Partner.find_by(name: 'Nothing-HQ')
 unless partner.present?
   partner = Partner.create!(
-    name: 'Lipalater-HQ',
+    name: 'Nothing-HQ',
     year_of_incorporation: '2014',
     speciality: 'HQ',
     location: 'Nairobi'
@@ -12,12 +12,12 @@ unless partner.present?
   p "Partner created: #{partner.name}"
 end
 
-store = Store.find_by(name: 'Lipalater-Nairobi')
+store = Store.find_by(name: 'Nothing-Nairobi')
 unless store.present?
   store = Store.create!(
-    name: 'Lipalater-HQ',
+    name: 'Nothing-HQ',
     partner_id: partner.id,
-    store_key: 'lipalater-nairobi',
+    store_key: 'nothing-nairobi',
     country: 'Kenya'
   )
   # dev_user.super_user!
@@ -35,14 +35,14 @@ unless dev_role.present?
   # dev_user.super_user!
   p "Developer role: #{dev_role.name}"
 end
-dev_user = User.find_by(email: 'devops@lipalater.com')
+dev_user = User.find_by(email: 'devops@nothing.com')
 unless dev_user.present?
   dev_user = User.create!(
     firstname: 'Developer',
     othernames: 'user',
     gender: 'Male',
     mobile: '+254725475051',
-    email: 'devops@lipalater.com',
+    email: 'devops@nothing.com',
     password: 'Lip@l@t3r!2020',
     created_by: 0,
     last_login_time: '2020-08-25 15:07:49',
